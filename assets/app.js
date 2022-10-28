@@ -15,7 +15,7 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import './bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap/dist/js/bootstrap.js'
+import 'bootstrap/dist/js/bootstrap'
   
 
 //Code bellow is a testing for fix css problems.
