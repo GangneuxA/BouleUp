@@ -5,7 +5,20 @@
 {% block body %}
     <h1>Create new Article</h1>
 
-    {{ include('article/_form.html.twig') }}
+<div class="container">
+    <div class="row">
+        <div class="login-form bg-light mt-4 p-4">
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+        {{ form_start(form) }}
+
+            {{ form_row(form.description) }}
+        
+            {{ include('article/_form.html.twig') }}
+        
+        {{ form_end(form) }}
+        
+        </div>
+    </div>
+</div>
+<a class="btn btn-primary" href ="{{ path('app_article_index') }}">Back to list</a>
 {% endblock %}
