@@ -75,4 +75,19 @@ class EventController extends AbstractController
 
         return $this->redirectToRoute('app_event_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/update-NbEntrant/{id}/{update}', name: 'app_event_NbEntrant', methods: ['GET'])]
+    public function updateNbEntrant(Event $event, $update, EventRepository $eventRepository): Response
+    {
+    if ($update === 'inscription'){
+      $event->setNbEntrant($event->getNbEntrant() + 1);
+      $event->addUser($this->getUser());
+    }else{
+      $event->setNbEntrant($event->getNbEntrant() - 1);
+      $event->removeUser($this->getUser());
+    }
+    $eventRepository->add($event, true);
+
+    return $this->redirectToRoute('app_event_index');
+  }
 }
