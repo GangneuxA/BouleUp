@@ -7,16 +7,18 @@
     <div class="row">
         <div class="login-form bg-light mt-4 p-4">
 
-        <h1><span>Article du </span><span>{{ article.date ? article.date|date('Y-m-d') : '' }}</span></h1>
+        <h1><span>Titre : </span><span>{{ article.titre }}</span></h1>
 
         <div>Description :</div>
-        <div>{{ article.description }}</div>
-        
+        <span>{{ article.description }}</span>
+        </br></br>
+        <span>Article du </span><span>{{ article.date ? article.date|date('Y-m-d') : '' }}</span>        
         </br>
-
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a class="btn btn-primary" href ="{{ path('app_article_edit', {'id': article.id}) }}" role="button">edit</a>
         </br></br>
         {{ include('article/_delete_form.html.twig') }}
+        {% endif %}
         </div>
     </div>
 </div>
