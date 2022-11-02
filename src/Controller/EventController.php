@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,9 @@ class EventController extends AbstractController
     public function new(Request $request, EventRepository $eventRepository): Response
     {
         $event = new Event();
+        $event->setNbEntrant(0);
+        $d = new DateTime();
+        $event->setDate($d);
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
