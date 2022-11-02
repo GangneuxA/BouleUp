@@ -27,9 +27,8 @@ class ArticleController extends AbstractController
     {
         $article = new Article();
         $article->setUser($this->getUser());
-        $d = new DateTime;
-        $d->format('Y-m-d');
-        $article->setDate($d);
+        $s = date('Y-m-d H:i:s');
+        $article->setDate($s);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -59,6 +58,9 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
+
+        $s = date('Y-m-d H:i');
+        $article->setDate($s);
         if ($form->isSubmitted() && $form->isValid()) {
             $articleRepository->save($article, true);
 
