@@ -34,11 +34,12 @@
       </ul>
 
         
-
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          <a href="/logout" button type="button" class="btn btn-outline-primary" disabled>Logout</a></button>
+        {% else %}
         <a href="/register" button style="margin:5px"; button type="button" class="btn btn-outline-primary">Register</a></button>
         <a href="/login" button type="button" class="btn btn-outline-primary" disabled>Login</a></button>
-        
-        
+        {% endif %}
 
     </div>
   </div>
