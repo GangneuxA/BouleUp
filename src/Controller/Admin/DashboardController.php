@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Menu\MenuInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Event;
@@ -25,20 +26,22 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('BouleUp');
+            ->setTitle('BouleUp')
+            ->disableDarkMode();
     }
 
     public function configureMenuItems(): iterable
     {
         return[
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
 
+            MenuItem::linkToUrl('HomePage', 'fa fa-home', 'http://127.0.0.1:8000/home'),
             MenuItem::section('Entity'),
             MenuItem::linkToCrud('User', 'fas fa-list', User::class),
             MenuItem::linkToCrud('Article', 'fas fa-list', Article::class),
             MenuItem::linkToCrud('Order', 'fas fa-list', Order::class),
             MenuItem::linkToCrud('Product', 'fas fa-list', Product::class),
             MenuItem::linkToCrud('Event', 'fas fa-list', Event::class),
+            
             
         ];
          
