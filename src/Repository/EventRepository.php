@@ -39,6 +39,15 @@ class EventRepository extends ServiceEntityRepository
         }
     }
 
+    public function add(Event $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

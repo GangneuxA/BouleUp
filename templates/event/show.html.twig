@@ -38,6 +38,9 @@
         </tbody>
     </table>
 
+    <a href="{{ path('app_event_NbEntrant', {'id': event.id, 'update' : 'inscription'}) }}">inscription</a>
+    <a href="{{ path('app_event_NbEntrant', {'id': event.id, 'update' : 'désinscription'}) }}">désinscription</a>
+    </br>
     <a href="{{ path('app_event_index') }}">back to list</a>
 
     <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
