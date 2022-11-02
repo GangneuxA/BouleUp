@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,10 @@ class ArticleController extends AbstractController
     public function new(Request $request, ArticleRepository $articleRepository): Response
     {
         $article = new Article();
+        $article->setUser($this->getUser());
+        $d = new DateTime;
+        $d->format('Y-m-d');
+        $article->setDate($d);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 

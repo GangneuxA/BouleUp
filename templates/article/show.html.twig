@@ -3,28 +3,23 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+<div class="container">
+    <div class="row">
+        <div class="login-form bg-light mt-4 p-4">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ article.date ? article.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ article.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <h1><span>Article du </span><span>{{ article.date ? article.date|date('Y-m-d') : '' }}</span></h1>
 
-    <a href="{{ path('app_article_index') }}">back to list</a>
+        <div>Description :</div>
+        <div>{{ article.description }}</div>
+        
+        </br>
 
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+        <a class="btn btn-primary" href ="{{ path('app_article_edit', {'id': article.id}) }}" role="button">edit</a>
+        </br></br>
+        {{ include('article/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+</br>
+<a class="btn btn-primary" href ="{{ path('app_article_index') }}">Back to list</a>
 {% endblock %}
