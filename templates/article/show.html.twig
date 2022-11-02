@@ -9,8 +9,11 @@
 
         <h1><span>Article du </span><span>{{ article.date ? article.date|date('Y-m-d') : '' }}</span></h1>
 
+        <span>Titre : </span>
+        <span>{{ article.titre }}</span>
+        </br>
         <div>Description :</div>
-        <div>{{ article.description }}</div>
+        <span>{{ article.description }}</span>
         
         </br>
 
