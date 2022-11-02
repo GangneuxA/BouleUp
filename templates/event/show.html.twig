@@ -3,47 +3,36 @@
 {% block title %}Event{% endblock %}
 
 {% block body %}
-    <h1>Event</h1>
+<div class="container">
+    <div class="row">
+        <div class="login-form bg-light mt-4 p-4">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Label</th>
-                <td>{{ event.label }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ event.description }}</td>
-            </tr>
-            <tr>
-                <th>Cashprize</th>
-                <td>{{ event.cashprize }}</td>
-            </tr>
-            <tr>
-                <th>MaxEntrant</th>
-                <td>{{ event.maxEntrant }}</td>
-            </tr>
-            <tr>
-                <th>NbEntrant</th>
-                <td>{{ event.nbEntrant }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <h1><span>{{ event.label }}</span></h1>
+            <span>Date de l'event :</span>
+            <span>{{ event.date ? event.date|date('Y-m-d') : '' }}</span>
+            </br>
+            <span>Description :</span>
+            <span>{{ event.description }}</span>
+            </br>
+            <span>Cashprize :</span>
+            <span>{{ event.cashprize }}</span>
+            </br>
+            <span>Nombre de participant maximum :</span>
+            <span>{{ event.maxEntrant }}</span>
+            </br>
+            <span>Nombre de participant :</span>
+            <span>{{ event.nbEntrant }}</span>
+            </br>
 
-    <a href="{{ path('app_event_NbEntrant', {'id': event.id, 'update' : 'inscription'}) }}">inscription</a>
-    <a href="{{ path('app_event_NbEntrant', {'id': event.id, 'update' : 'désinscription'}) }}">désinscription</a>
-    </br>
-    <a href="{{ path('app_event_index') }}">back to list</a>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="btn btn-primary" href ="{{ path('app_event_edit', {'id': event.id}) }}" role="button">edit</a>
+            </br></br>
+            {{ include('event/_delete_form.html.twig') }}
+            {% endif %}
 
-    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
-
-    {{ include('event/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+</br>
+<a class="btn btn-primary" href ="{{ path('app_event_index') }}">Back to list</a>
 {% endblock %}

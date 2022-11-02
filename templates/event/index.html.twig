@@ -3,43 +3,35 @@
 {% block title %}Event index{% endblock %}
 
 {% block body %}
-    <h1>Event index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Date</th>
-                <th>Label</th>
-                <th>Description</th>
-                <th>Cashprize</th>
-                <th>MaxEntrant</th>
-                <th>NbEntrant</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr>
-                <td>{{ event.id }}</td>
-                <td>{{ event.date ? event.date|date('Y-m-d') : '' }}</td>
-                <td>{{ event.label }}</td>
-                <td>{{ event.description }}</td>
-                <td>{{ event.cashprize }}</td>
-                <td>{{ event.maxEntrant }}</td>
-                <td>{{ event.nbEntrant }}</td>
-                <td>
-                    <a href="{{ path('app_event_show', {'id': event.id}) }}">show</a>
-                    <a href="{{ path('app_event_edit', {'id': event.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+</br>
+    <div class="container">
+        <div class="row">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="btn btn-primary" href ="{{ path('app_event_new') }}">Create new event</a>
+            {% endif %}
+        </div>
+    </div>
 
-    <a href="{{ path('app_event_new') }}">Create new</a>
+    {% for event in events %}
+    <div class="container">
+     <div class="article bg-light mt-4 p-4">
+     <h1><span>{{ event.label }}</span></h1>
+        <span>Date de l'event :</span>
+        <span>{{ event.date ? event.date|date('Y-m-d') : '' }}</span>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <a class="btn btn-primary float-end" href ="{{ path('app_event_edit', {'id': event.id}) }}" role="button">edit</a>
+        {% endif %}
+        <a class="btn btn-primary float-end" href ="{{ path('app_event_show', {'id': event.id}) }}" role="button">show</a>
+        </br>
+        </div>
+    </div>
+    {% else %}
+    <div class="container">
+        <div class="article bg-light mt-4 p-4">
+            <div colspan="4"> no records found</div>
+        </div>
+    </div>
+    {% endfor %}
+    
 {% endblock %}
