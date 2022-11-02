@@ -16,16 +16,13 @@
     {% for article in articles %}
     <div class="container">
      <div class="article bg-light mt-4 p-4">
+        <h1><span>Titre : </span><span>{{ article.titre }}</span></h1>
         <span>Date de l'article :</span>
         <span>{{ article.date ? article.date|date('Y-m-d') : '' }}</span>
-        </br>
-        <span>Titre : </span>
-        <span>{{ article.titre }}</span>
-        </br>
-        <div>Description :</div>
-        <span>{{ article.description }}</span>
-        <a class="btn btn-primary float-end" href ="{{ path('app_article_show', {'id': article.id}) }}" role="button">show</a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a class="btn btn-primary float-end" href ="{{ path('app_article_edit', {'id': article.id}) }}" role="button">edit</a>
+        {% endif %}
+        <a class="btn btn-primary float-end" href ="{{ path('app_article_show', {'id': article.id}) }}" role="button">show</a>
         </br>
         </div>
     </div>
