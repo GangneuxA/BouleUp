@@ -27,7 +27,7 @@ class EventController extends AbstractController
     {
         $event = new Event();
         $event->setNbEntrant(0);
-        $d = new DateTime();
+        $d = date('Y-m-d H:i');
         $event->setDate($d);
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);

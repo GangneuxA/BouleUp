@@ -9,7 +9,7 @@
 
             <h1><span>{{ event.label }}</span></h1>
             <span>Date de l'event :</span>
-            <span>{{ event.date ? event.date|date('Y-m-d') : '' }}</span>
+            <span>{{ event.date ? event.date|date('Y-m-d H:i') : '' }}</span>
             </br>
             <span>Description :</span>
             <span>{{ event.description }}</span>
