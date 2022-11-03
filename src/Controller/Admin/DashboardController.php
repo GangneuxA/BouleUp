@@ -36,11 +36,11 @@ class DashboardController extends AbstractDashboardController
 
             MenuItem::linkToUrl('HomePage', 'fa fa-home', 'http://127.0.0.1:8000/home'),
             MenuItem::section('Entity'),
-            MenuItem::linkToCrud('User', 'fas fa-list', User::class),
-            MenuItem::linkToCrud('Article', 'fas fa-list', Article::class),
-            MenuItem::linkToCrud('Order', 'fas fa-list', Order::class),
-            MenuItem::linkToCrud('Product', 'fas fa-list', Product::class),
-            MenuItem::linkToCrud('Event', 'fas fa-list', Event::class),
+            MenuItem::linkToCrud('User', 'fas fa-address-card', User::class),
+            MenuItem::linkToCrud('Article', 'far fa-newspaper', Article::class),
+            MenuItem::linkToCrud('Order', 'fas fa-shopping-basket', Order::class),
+            MenuItem::linkToCrud('Product', 'fas fa-gift', Product::class),
+            MenuItem::linkToCrud('Event', 'fas fa-trophy', Event::class),
             
             
         ];
