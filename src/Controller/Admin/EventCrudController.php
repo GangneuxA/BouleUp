@@ -36,7 +36,7 @@ class EventCrudController extends AbstractCrudController
         return [
             TextField::new('label'),
             TextareaField::new('description'),
-            TextField::new('cashprize'),
+            NumberField::new('cashprize'),
             IntegerField::new('max_entrant'),
             IntegerField::new('nb_entrant')->HideOnForm(),
             TextField::new('date')->HideOnForm(),
