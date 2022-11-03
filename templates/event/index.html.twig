@@ -18,7 +18,7 @@
      <div class="article bg-light mt-4 p-4">
      <h1><span>{{ event.label }}</span></h1>
         <span>Date de l'event :</span>
-        <span>{{ event.date ? event.date|date('Y-m-d') : '' }}</span>
+        <span>{{ event.date ? event.date|date('Y-m-d H:i') : '' }}</span>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <a class="btn btn-primary float-end" href ="{{ path('app_event_edit', {'id': event.id}) }}" role="button">edit</a>
         {% endif %}
