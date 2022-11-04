@@ -12,6 +12,16 @@
                 <span class="display-3"> {{ countAllArticle['value'] }} </span> article
             </div>
         </div>
+        <div class="row">
+            <h1>Event List</h1>
+                <ul>
+                    {% for event in allEvent %}
+                    <li>
+                        <span class="display-5">{{ event.label}} {{ event.nbEntrant }} </span> registered
+                    </li>
+                    {% endfor %}
+                </ul>
+        </div>
     </div>
 
 {% endblock %}

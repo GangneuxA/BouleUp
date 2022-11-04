@@ -16,17 +16,20 @@ use App\Entity\Product;
 use App\Entity\Order;
 use App\Repository\UserRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\EventRepository;
 
 class DashboardController extends AbstractDashboardController
 {
 
     protected $userRepository;
     protected $articleRepository;
+    protected $eventRepository;
 
-    public function __construct(UserRepository $userRepository,ArticleRepository $articleRepository)
+    public function __construct(UserRepository $userRepository,ArticleRepository $articleRepository, EventRepository $eventRepository)
     {
         $this->userRepository = $userRepository;
         $this->articleRepository = $articleRepository;
+        $this->eventRepository = $eventRepository;
     }
 
 
@@ -35,7 +38,8 @@ class DashboardController extends AbstractDashboardController
     {
             return $this->render('admin/dashboard.html.twig', [
                 'countAllUser' => $this->userRepository->countAllUser(),
-                'countAllArticle' => $this->articleRepository->countAllArticle()
+                'countAllArticle' => $this->articleRepository->countAllArticle(),
+                'allEvent' => $this->eventRepository->findAll()
             ]);
     }
 
