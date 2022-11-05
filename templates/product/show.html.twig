@@ -23,6 +23,9 @@
                 <th>Description</th>
                 <td>{{ product.description }}</td>
             </tr>
+            <tr>
+                <th><img style="max-width: 150px" src="{{ vich_uploader_asset(product, 'imageFile') }}"></th>
+            </tr>
         </tbody>
     </table>
 
