@@ -39,6 +39,17 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return int|mixed|string
+     */
+    public function countAllArticle()
+    {
+        $queryBuilder = $this->createQueryBuilder('a');
+        $queryBuilder->select('COUNT(a.id) as value');
+
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */
