@@ -34,8 +34,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
     private Collection $articles;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Order::class)]
-    private Collection $orders;
 
     #[ORM\ManyToMany(targetEntity: Event::class, inversedBy: 'users')]
     private Collection $event;
@@ -147,35 +145,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
-    public function addOrder(Order $order): self
-    {
-        if (!$this->orders->contains($order)) {
-            $this->orders->add($order);
-            $order->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrder(Order $order): self
-    {
-        if ($this->orders->removeElement($order)) {
-            // set the owning side to null (unless already changed)
-            if ($order->getUser() === $this) {
-                $order->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+  
 
     /**
      * @return Collection<int, Event>

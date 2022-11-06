@@ -33,13 +33,6 @@ class Product
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Order::class, mappedBy: 'product')]
-    private Collection $orders;
-
-    public function __construct()
-    {
-        $this->orders = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -106,33 +99,6 @@ class Product
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Order>
-     */
-    public function getOrders(): Collection
-    {
-        return $this->orders;
-    }
-
-    public function addOrder(Order $order): self
-    {
-        if (!$this->orders->contains($order)) {
-            $this->orders->add($order);
-            $order->addProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrder(Order $order): self
-    {
-        if ($this->orders->removeElement($order)) {
-            $order->removeProduct($this);
-        }
 
         return $this;
     }

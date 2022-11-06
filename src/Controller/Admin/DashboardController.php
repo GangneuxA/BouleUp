@@ -13,7 +13,6 @@ use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Event;
 use App\Entity\Product;
-use App\Entity\Order;
 use App\Repository\UserRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\EventRepository;
@@ -60,7 +59,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::section('Entity'),
             MenuItem::linkToCrud('User', 'fas fa-address-card', User::class),
             MenuItem::linkToCrud('Article', 'far fa-newspaper', Article::class),
-            MenuItem::linkToCrud('Order', 'fas fa-shopping-basket', Order::class),
             MenuItem::linkToCrud('Product', 'fas fa-gift', Product::class),
             MenuItem::linkToCrud('Event', 'fas fa-trophy', Event::class),
             
