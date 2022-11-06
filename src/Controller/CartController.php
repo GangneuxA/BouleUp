@@ -82,7 +82,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/delete', name: 'app_cart_deleteAll')]
-    public function deleteAll(Product $product, SessionInterface $session)
+    public function deleteAll(SessionInterface $session)
     {
         
         $session->remove("panier");
