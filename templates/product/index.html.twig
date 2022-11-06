@@ -23,10 +23,13 @@
                 <td>{{ product.price }}</td>
                 <td>{{ product.description }}</td>
                 <td>
+                    
                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
                     {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
                     {% endif %}
+                    <a href="#">buy</a>
+                    
                 </td>
             </tr>
         {% else %}
