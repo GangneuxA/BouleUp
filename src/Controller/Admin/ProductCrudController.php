@@ -15,6 +15,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 
 class ProductCrudController extends AbstractCrudController
 {
@@ -27,14 +29,23 @@ class ProductCrudController extends AbstractCrudController
     {
         return $crud;
     }
-    /*
+    
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+
+            TextField::new('label'),
+            TextareaField::new('description'),
+            NumberField::new('price'),
         ];
     }
-    */
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->remove(Crud::PAGE_INDEX, Action::NEW)
+
+        ;
+    }
+    
 }
