@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cart{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for element in dataPanier %}
+                <tr>
+                    <td>{{element.produit.label}}</td>
+                    <td>{{element.produit.price}} $</td>
+                    <td>{{element.quantite}}</td>
+                    <td>{{element.quantite * element.produit.price}} $</td>
+                    <td>
+                        <a href="{{path('app_cart_add', {id: element.produit.id})}}" class="btn btn-success">
+                            add
+                        </a>
+                        <a href="{{path('app_cart_remove', {id: element.produit.id})}}" class="btn btn-warning">
+                            remove
+                        </a>
+                        <a href="{{path('app_cart_delete', {id: element.produit.id})}}" class="btn btn-danger">
+                            delete
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Cart is empty</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td>{{total}} $</td>
+                <td>
+                    <a href="{{path('app_cart_deleteAll')}}" class="btn btn-danger">
+                        delete
+                    </a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
