@@ -38,6 +38,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Event::class, inversedBy: 'users')]
     private Collection $event;
 
+    #[ORM\Column]
+    private ?bool $isBlocked = false;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -167,6 +170,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeEvent(Event $event): self
     {
         $this->event->removeElement($event);
+
+        return $this;
+    }
+
+    public function getIsBlocked(): ?bool
+    {
+        return $this->isBlocked;
+    }
+
+    public function setIsBlocked(bool $isBlocked): self
+    {
+        $this->isBlocked = $isBlocked;
 
         return $this;
     }

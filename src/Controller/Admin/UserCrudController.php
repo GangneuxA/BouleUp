@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 
 class UserCrudController extends AbstractCrudController
 {
@@ -34,6 +35,7 @@ class UserCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             EmailField::new('email')->hideOnForm(),
             ArrayField::new('roles'),
+            BooleanField::new('isBlocked')->hideOnForm()
         ];
     }
     
