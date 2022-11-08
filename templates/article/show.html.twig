@@ -14,7 +14,7 @@
         </br></br>
         <span>Article du </span><span>{{ article.date ? article.date|date('Y-m-d H:i') : '' }}</span>        
         </br>
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if is_granted('ROLE_ADMIN','ROLE_VIP') %}
         <a class="btn btn-primary" href ="{{ path('app_article_edit', {'id': article.id}) }}" role="button">edit</a>
         </br></br>
         {{ include('article/_delete_form.html.twig') }}

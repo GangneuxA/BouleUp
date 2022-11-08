@@ -31,7 +31,18 @@
 
     <a href="{{ path('app_product_index') }}">back to list</a>
 
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ path('app_cart_add', {'id': product.id}) }}">buy</a>
+    {% else %}
+    <a href="/login">buy</a>
+    {% endif %}
 
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
     {{ include('product/_delete_form.html.twig') }}
+    {% endif %}
+    
 {% endblock %}

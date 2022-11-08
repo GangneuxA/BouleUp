@@ -28,7 +28,11 @@
                     {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
                     {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <a href="{{ path('app_cart_add', {'id': product.id}) }}">buy</a>
+                    {% else %}
+                    <a href="/login">buy</a>
+                    {% endif %}
                     
                 </td>
             </tr>

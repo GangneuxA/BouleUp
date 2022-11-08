@@ -22,17 +22,27 @@
           <a class="nav-link" href="/product">Shop</a>
         </li>
         <li class="nav-item">
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           <a class="nav-link" href="/event">Event</a>
+          {% else %}
+          <a class="nav-link" href="/login">Event</a>
+          {% endif %}
         </li>
         <li class="nav-item">
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
           <a class="nav-link" href="/article">Blog</a>
+          {% else %}
+          <a class="nav-link" href="/login">Blog</a>
+          {% endif %}
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/contact">Contact</a>
         </li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <li class="nav-item">
           <a class="nav-link" href="/cart">Cart</a>
         </li>
+        {% endif %}
         
       </ul>
 
