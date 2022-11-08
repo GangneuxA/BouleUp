@@ -83,12 +83,29 @@ class EventController extends AbstractController
     #[Route('/update-NbEntrant/{id}/{update}', name: 'app_event_NbEntrant', methods: ['GET'])]
     public function updateNbEntrant(Event $event, $update, EventRepository $eventRepository): Response
     {
+    $u = 0;
+    $listUser = $event->getUsers();
     if ($update === 'inscription'){
-      $event->setNbEntrant($event->getNbEntrant() + 1);
-      $event->addUser($this->getUser());
+        for($i = 0; $i != $listUser->count() ;$i++) {
+            if($listUser[$i] == $this->getUser()) { 
+                break;
+            }
+            else {
+                $u++;
+            }
+        }     
+        if($u == $listUser->count()) {
+            $event->setNbEntrant($event->getNbEntrant() + 1);
+            $event->addUser($this->getUser());
+        }      
     }else{
-      $event->setNbEntrant($event->getNbEntrant() - 1);
-      $event->removeUser($this->getUser());
+        for($i = 0; $i<=$listUser->count() ;$i++) {
+            if($listUser[$i] == $this->getUser()) { 
+                $event->setNbEntrant($event->getNbEntrant() - 1);
+                $event->removeUser($this->getUser());
+                break;
+            }
+        }    
     }
     $eventRepository->add($event, true);
 
